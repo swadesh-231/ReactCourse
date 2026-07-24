@@ -9,12 +9,20 @@ const artwork = (id) =>
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
 const Pokedex = () => {
-  const [pokemons, setPokemons] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [query, setQuery] = useState("");
-  const [sortBy, setSortBy] = useState("id"); // "id" | "name"
-  const [page, setPage] = useState(1);
+  // All the component's state lives in one object.
+  const [listState, setListState] = useState({
+    pokemons: [],
+    loading: true,
+    error: null,
+    query: "",
+    sortBy: "id", // "id" | "name"
+    page: 1,
+  });
+
+  const { pokemons, loading, error, query, sortBy, page } = listState;
+
+  // Merge a partial change into the state object.
+  const update = (changes) => setListState((prev) => ({ ...prev, ...changes }));
 
   useEffect(() => {
     let ignore = false;
@@ -30,14 +38,10 @@ const Pokedex = () => {
           const id = Number(p.url.split("/").filter(Boolean).pop());
           return { id, name: p.name, image: artwork(id) };
         });
-        setPokemons(list);
-        setLoading(false);
+        update({ pokemons: list, loading: false });
       })
       .catch((err) => {
-        if (!ignore) {
-          setError(err.message);
-          setLoading(false);
-        }
+        if (!ignore) update({ error: err.message, loading: false });
       });
 
     return () => {
@@ -57,15 +61,9 @@ const Pokedex = () => {
   const start = (currentPage - 1) * PAGE_SIZE;
   const visible = processed.slice(start, start + PAGE_SIZE);
 
-  const handleSearch = (e) => {
-    setQuery(e.target.value);
-    setPage(1);
-  };
+  const handleSearch = (e) => update({ query: e.target.value, page: 1 });
 
-  const changeSort = (value) => {
-    setSortBy(value);
-    setPage(1);
-  };
+  const changeSort = (value) => update({ sortBy: value, page: 1 });
 
   const sortBtn = (value) =>
     `rounded-lg px-3 py-1.5 text-sm font-bold transition-colors ${
@@ -180,7 +178,7 @@ const Pokedex = () => {
             {/* Pagination */}
             <div className="mt-10 flex items-center justify-center gap-4">
               <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                onClick={() => update({ page: Math.max(1, currentPage - 1) })}
                 disabled={currentPage === 1}
                 className="crayon crayon-press rounded-xl bg-white px-4 py-2.5 font-bold text-ink-900 disabled:cursor-not-allowed disabled:opacity-40"
               >
@@ -190,7 +188,7 @@ const Pokedex = () => {
                 Page {currentPage} / {totalPages}
               </span>
               <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                onClick={() => update({ page: Math.min(totalPages, currentPage + 1) })}
                 disabled={currentPage === totalPages}
                 className="crayon crayon-press rounded-xl bg-brand-500 px-4 py-2.5 font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
               >
