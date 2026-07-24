@@ -11,6 +11,7 @@ const linkClass = ({ isActive }) =>
 const Navbar = () => {
   const { pathname } = useLocation();
   const isLearn = pathname.startsWith("/learn");
+  const isProjects = pathname.startsWith("/projects");
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-line bg-cream">
@@ -33,6 +34,12 @@ const Navbar = () => {
             className={`${base} ${isLearn ? activeClass : idleClass}`}
           >
             Learn
+          </NavLink>
+          <NavLink
+            to="/projects"
+            className={`${base} ${isProjects ? activeClass : idleClass}`}
+          >
+            Projects
           </NavLink>
           <NavLink to="/about" className={linkClass}>
             About

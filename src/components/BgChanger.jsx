@@ -41,7 +41,9 @@ const BgChanger = () => {
             aria-label={s.name}
             style={{ backgroundColor: s.value }}
             className={`crayon crayon-press h-10 w-10 rounded-xl ${
-              bg === s.value ? "outline outline-2 outline-offset-2 outline-line" : ""
+              bg === s.value
+                ? "ring-2 ring-line ring-offset-2 ring-offset-white"
+                : ""
             }`}
           />
         ))}
