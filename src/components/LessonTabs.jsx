@@ -19,6 +19,9 @@ const LessonTabs = () => (
     <NavLink to="/learn/useref" className={tabClass}>
       useRef
     </NavLink>
+    <NavLink to="/learn/router" className={tabClass}>
+      Router
+    </NavLink>
   </div>
 );
 

@@ -6,6 +6,7 @@ import LearnProps from "../pages/LearnProps";
 import LearnUseState from "../pages/LearnUseState";
 import LearnUseEffect from "../pages/LearnUseEffect";
 import LearnUseRef from "../pages/LearnUseRef";
+import LearnRouter from "../pages/LearnRouter";
 import Projects from "../pages/Projects";
 import Pokedex from "../pages/Pokedex";
 import PokemonDetail from "../pages/PokemonDetail";
@@ -26,6 +27,7 @@ const Root = () => {
           <Route path="/learn/usestate" element={<LearnUseState />} />
           <Route path="/learn/useeffect" element={<LearnUseEffect />} />
           <Route path="/learn/useref" element={<LearnUseRef />} />
+          <Route path="/learn/router" element={<LearnRouter />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/pokedex" element={<Pokedex />} />
           <Route path="/projects/pokedex/:name" element={<PokemonDetail />} />
