@@ -95,7 +95,7 @@ const TicTacToe = () => {
         </div>
 
         {/* Board */}
-        <div className="crayon grid grid-cols-3 gap-2 rounded-3xl bg-white p-3">
+        <div className="crayon grid w-full grid-cols-3 gap-2 rounded-3xl bg-white p-3">
           {squares.map((value, i) => {
             const inWin = winner?.line.includes(i);
             return (
@@ -104,7 +104,7 @@ const TicTacToe = () => {
                 onClick={() => play(i)}
                 disabled={Boolean(value) || Boolean(winner)}
                 aria-label={`Square ${i + 1}${value ? `, ${value}` : ""}`}
-                className={`crayon flex h-24 w-24 items-center justify-center rounded-2xl font-display text-5xl font-bold transition-colors ${
+                className={`crayon flex aspect-square w-full items-center justify-center rounded-2xl font-display text-4xl font-bold transition-colors sm:text-5xl ${
                   inWin ? "bg-mint" : "bg-cream"
                 } ${
                   value === "X"
