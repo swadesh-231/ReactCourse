@@ -154,8 +154,9 @@ const Pokedex = () => {
 
             <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
               {visible.map((p) => (
-                <div
+                <Link
                   key={p.id}
+                  to={`/projects/pokedex/${p.name}`}
                   className="crayon crayon-press flex flex-col items-center rounded-2xl bg-white p-4"
                 >
                   <div className="crayon flex h-28 w-full items-center justify-center rounded-xl bg-cream">
@@ -172,7 +173,7 @@ const Pokedex = () => {
                   <p className="font-display text-lg font-bold text-ink-900">
                     {capitalize(p.name)}
                   </p>
-                </div>
+                </Link>
               ))}
             </div>
 

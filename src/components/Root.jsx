@@ -8,6 +8,7 @@ import LearnUseEffect from "../pages/LearnUseEffect";
 import LearnUseRef from "../pages/LearnUseRef";
 import Projects from "../pages/Projects";
 import Pokedex from "../pages/Pokedex";
+import PokemonDetail from "../pages/PokemonDetail";
 import Todo from "../pages/Todo";
 import TicTacToe from "../pages/TicTacToe";
 import About from "../pages/About";
@@ -27,6 +28,7 @@ const Root = () => {
           <Route path="/learn/useref" element={<LearnUseRef />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/pokedex" element={<Pokedex />} />
+          <Route path="/projects/pokedex/:name" element={<PokemonDetail />} />
           <Route path="/projects/todo" element={<Todo />} />
           <Route path="/projects/tictactoe" element={<TicTacToe />} />
           <Route path="/about" element={<About />} />
